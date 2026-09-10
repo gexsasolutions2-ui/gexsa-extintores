@@ -208,6 +208,8 @@ h1{
 <div class="contenedor">
 
 
+  <!-- LOGO -->
+
   <div class="logo">
 
     <svg
@@ -282,32 +284,37 @@ const API_URL =
 'https://script.google.com/macros/s/AKfycbxEatAlgJhB9zwwYlbHRabB2Wm0sskzKMC3EZApl7QU4TifIom8lfAaDATkFVvoZVy4Xg/exec';
 
 
-const TARJETA_URL =
-'https://docs.google.com/spreadsheets/d/1jTt8KdQhbbv6nwXtk2mJDI6du_Sq2sWVYlScaTcIJ7M/edit?gid=66323689#gid=66323689';
+const TARJETA_BASE_URL =
+'https://script.google.com/macros/s/AKfycbxEatAlgJhB9zwwYlbHRabB2Wm0sskzKMC3EZApl7QU4TifIom8lfAaDATkFVvoZVy4Xg/exec';
 
 
 /* =====================================================
    SERIE DEL QR
    ===================================================== */
 
-const params =
+const parametros =
 new URLSearchParams(
-window.location.search
+  window.location.search
 );
 
+
 const serieQR =
-params.get('serie');
+parametros.get('serie');
 
 
 const contenido =
-document.getElementById('contenido');
+document.getElementById(
+  'contenido'
+);
 
 
 /* =====================================================
    ESCAPAR HTML
    ===================================================== */
 
-function esc(valor){
+function esc(
+  valor
+){
 
   if(
     valor === null ||
@@ -318,28 +325,54 @@ function esc(valor){
 
   }
 
-  return String(valor)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+
+  return String(
+    valor
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#039;'
+  );
 
 }
 
 
 /* =====================================================
-   SERIE
+   OBTENER SERIE FINAL
    ===================================================== */
 
-function serieFinal(valor){
+function serieFinal(
+  valor
+){
 
   if(!valor){
+
     return '';
+
   }
 
+
   const texto =
-    String(valor).trim();
+    String(
+      valor
+    ).trim();
+
 
   if(
     texto.indexOf('/') >= 0
@@ -348,11 +381,15 @@ function serieFinal(valor){
     const partes =
       texto.split('/');
 
+
     return (
-      partes[partes.length - 1] || ''
+      partes[
+        partes.length - 1
+      ] || ''
     ).trim();
 
   }
+
 
   return texto;
 
@@ -363,7 +400,9 @@ function serieFinal(valor){
    MOSTRAR ERROR
    ===================================================== */
 
-function errorPagina(mensaje){
+function mostrarError(
+  mensaje
+){
 
   contenido.innerHTML = `
 
@@ -444,7 +483,9 @@ function boton(
    MOSTRAR FICHA
    ===================================================== */
 
-function mostrarFicha(data){
+function mostrarFicha(
+  data
+){
 
   if(
     !data ||
@@ -452,7 +493,7 @@ function mostrarFicha(data){
     !data.operatividad
   ){
 
-    errorPagina(
+    mostrarError(
       'No se encontró información para este extintor.'
     );
 
@@ -473,10 +514,15 @@ function mostrarFicha(data){
     op.numeroExtintor || '';
 
 
+  const ubicacion =
+    op.ubicacionSerie ||
+    serieQR ||
+    '';
+
+
   const serie =
     serieFinal(
-      op.ubicacionSerie ||
-      serieQR
+      ubicacion
     );
 
 
@@ -494,10 +540,6 @@ function mostrarFicha(data){
 
   const agente =
     op.agenteClase || '';
-
-
-  const ubicacion =
-    op.ubicacionSerie || '';
 
 
   const direccion =
@@ -524,13 +566,28 @@ function mostrarFicha(data){
     op.ph || '';
 
 
+  /*
+     ================================================
+     BOTÓN TARJETA
+     ================================================
+  */
+
+  const urlTarjeta =
+    TARJETA_BASE_URL +
+    '?accion=tarjeta&serie=' +
+    encodeURIComponent(
+      ubicacion
+    );
+
+
   let html = '';
 
 
   html += `
 
     <h1>
-      Extintor N.º ${esc(numero)}
+      Extintor N.º
+      ${esc(numero)}
     </h1>
 
   `;
@@ -555,6 +612,8 @@ function mostrarFicha(data){
   `;
 
 
+  /* CLIENTE */
+
   html += `
 
     <div class="fila">
@@ -571,6 +630,8 @@ function mostrarFicha(data){
 
   `;
 
+
+  /* TIPO */
 
   if(tipo){
 
@@ -593,6 +654,8 @@ function mostrarFicha(data){
   }
 
 
+  /* CAPACIDAD */
+
   if(capacidad){
 
     html += `
@@ -613,6 +676,8 @@ function mostrarFicha(data){
 
   }
 
+
+  /* AGENTE */
 
   if(agente){
 
@@ -635,6 +700,8 @@ function mostrarFicha(data){
   }
 
 
+  /* UBICACIÓN */
+
   if(ubicacion){
 
     html += `
@@ -655,6 +722,8 @@ function mostrarFicha(data){
 
   }
 
+
+  /* DIRECCIÓN */
 
   if(direccion){
 
@@ -677,6 +746,8 @@ function mostrarFicha(data){
   }
 
 
+  /* CÓDIGO */
+
   if(codigo){
 
     html += `
@@ -697,6 +768,8 @@ function mostrarFicha(data){
 
   }
 
+
+  /* FABRICACIÓN */
 
   if(fabricacion){
 
@@ -719,6 +792,8 @@ function mostrarFicha(data){
   }
 
 
+  /* CARGA */
+
   if(carga){
 
     html += `
@@ -740,6 +815,8 @@ function mostrarFicha(data){
   }
 
 
+  /* VENCIMIENTO */
+
   if(vencimiento){
 
     html += `
@@ -760,6 +837,8 @@ function mostrarFicha(data){
 
   }
 
+
+  /* PRÓXIMA PH */
 
   if(ph){
 
@@ -809,7 +888,7 @@ function mostrarFicha(data){
 
   html += boton(
     'Tarjeta de inspección',
-    TARJETA_URL
+    urlTarjeta
   );
 
 
@@ -836,7 +915,7 @@ function cargar(){
 
   if(!serieQR){
 
-    errorPagina(
+    mostrarError(
       'No se recibió la UBICACIÓN / SERIE del código QR.'
     );
 
@@ -844,12 +923,6 @@ function cargar(){
 
   }
 
-
-  /*
-     Usaremos un callback fijo.
-     Esto evita problemas con nombres
-     dinámicos de callbacks.
-  */
 
   const callback =
     'gexsaQRCallback';
@@ -884,7 +957,7 @@ function cargar(){
   script.onerror =
     function(){
 
-      errorPagina(
+      mostrarError(
         'No se pudo conectar con el sistema digital de GEXSA SOLUTIONS.'
       );
 
