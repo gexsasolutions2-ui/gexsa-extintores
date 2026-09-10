@@ -1,849 +1,1190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>GEXSA SOLUTIONS | Ficha Digital</title>
+  <meta charset="UTF-8">
 
-<style>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-:root{
-  --blue:#0f5d98;
-  --navy:#18324f;
-  --red:#ef111b;
-  --light:#eef3f7;
-  --line:#dbe3ea;
-  --gray:#6f8192;
-}
+  <title>GEXSA SOLUTIONS | Ficha Digital</title>
 
-*{
-  box-sizing:border-box;
-}
+  <style>
 
-body{
-  margin:0;
-  background:#fff;
-  color:var(--navy);
-  font-family:Arial,Helvetica,sans-serif;
-}
+    :root{
+      --azul:#0f5d98;
+      --azul-oscuro:#153a5a;
+      --rojo:#ef111b;
+      --fondo:#ffffff;
+      --ficha:#eef3f7;
+      --linea:#d8e1e8;
+      --gris:#718397;
+      --texto:#17324d;
+    }
 
-.wrap{
-  max-width:620px;
-  margin:0 auto;
-  padding:24px 18px 34px;
-}
+    *{
+      box-sizing:border-box;
+    }
 
-.card{
-  width:100%;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-.logo-img{
-  display:block;
-  width:220px;
-  max-width:68%;
-  height:auto;
-  margin:0 auto 6px;
-}
+    body{
+      margin:0;
+      padding:0;
+      background:var(--fondo);
+      color:var(--texto);
+      font-family:Arial,Helvetica,sans-serif;
+    }
 
-.badge{
-  display:block;
-  width:max-content;
-  max-width:100%;
-  margin:18px auto 20px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:#e9f3fb;
-  color:#116197;
-  font-size:13px;
-  font-weight:700;
-}
+    .contenedor{
+      width:100%;
+      max-width:620px;
+      margin:0 auto;
+      padding:28px 18px 40px;
+    }
 
-h1{
-  text-align:center;
-  margin:12px 0 8px;
-  font-size:30px;
-  color:#102f4d;
-}
+    /* ==================================================
+       LOGO
+       ================================================== */
 
-.subtitle{
-  text-align:center;
-  margin:0 0 26px;
-  color:var(--gray);
-  font-size:15px;
-  font-weight:700;
-}
+    .logo{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:8px;
+    }
 
-.data{
-  background:var(--light);
-  border-radius:18px;
-  padding:16px 18px;
-  margin-bottom:22px;
-}
+    .logo-svg{
+      width:210px;
+      max-width:72%;
+      height:auto;
+      display:block;
+    }
 
-.row{
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-}
+    /* ==================================================
+       TITULO
+       ================================================== */
 
-.row:last-child{
-  border-bottom:0;
-}
+    .badge{
+      width:max-content;
+      max-width:100%;
+      margin:16px auto 18px;
+      padding:8px 15px;
+      border-radius:999px;
+      background:#eaf4fb;
+      color:var(--azul);
+      font-size:13px;
+      font-weight:800;
+      text-align:center;
+    }
 
-.label{
-  font-size:12px;
-  text-transform:uppercase;
-  color:var(--gray);
-  margin-bottom:3px;
-}
+    h1{
+      margin:8px 0 5px;
+      text-align:center;
+      color:#102f4d;
+      font-size:30px;
+      line-height:1.15;
+    }
 
-.value{
-  font-size:18px;
-  font-weight:700;
-  line-height:1.25;
-  overflow-wrap:anywhere;
-}
+    .serie{
+      margin:0 0 26px;
+      text-align:center;
+      color:var(--gris);
+      font-size:15px;
+      font-weight:800;
+    }
 
-.btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  width:100%;
-  padding:18px 18px;
-  margin:14px 0;
-  border-radius:14px;
-  background:var(--red);
-  color:#fff;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:800;
-  text-transform:uppercase;
-  cursor:pointer;
-}
+    /* ==================================================
+       FICHA
+       ================================================== */
 
-.btn.disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
+    .ficha{
+      background:var(--ficha);
+      border-radius:18px;
+      padding:15px 18px;
+      margin-bottom:22px;
+    }
 
-.icon{
-  font-size:23px;
-  line-height:1;
-}
+    .fila{
+      padding:11px 0;
+      border-bottom:1px solid var(--linea);
+    }
 
-.arrow{
-  margin-left:auto;
-  font-size:28px;
-  font-weight:400;
-}
+    .fila:last-child{
+      border-bottom:none;
+    }
 
-.estado{
-  text-align:center;
-  margin:18px 0;
-  font-size:13px;
-  color:var(--gray);
-}
+    .etiqueta{
+      margin-bottom:4px;
+      color:var(--gris);
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
 
-.footer{
-  margin-top:28px;
-  padding-top:18px;
-  border-top:1px solid var(--line);
-  text-align:center;
-  color:#728498;
-  font-size:12px;
-  line-height:1.6;
-}
+    .valor{
+      color:#17324d;
+      font-size:18px;
+      font-weight:800;
+      line-height:1.3;
+      overflow-wrap:anywhere;
+    }
 
-.loading{
-  text-align:center;
-  padding:30px 10px;
-  color:var(--gray);
-  font-size:15px;
-}
+    /* ==================================================
+       BOTONES
+       ================================================== */
 
-.error{
-  background:#fff1f1;
-  border:1px solid #f3b9b9;
-  color:#a10d0d;
-  border-radius:14px;
-  padding:16px;
-  text-align:center;
-  font-size:14px;
-  line-height:1.5;
-}
+    .boton{
+      display:flex;
+      align-items:center;
+      width:100%;
+      min-height:58px;
+      margin:13px 0;
+      padding:15px 17px;
+      border-radius:14px;
+      background:var(--rojo);
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:800;
+      text-transform:uppercase;
+      transition:transform .12s ease,opacity .12s ease;
+    }
 
-</style>
+    .boton:active{
+      transform:scale(.99);
+    }
+
+    .icono{
+      width:27px;
+      min-width:27px;
+      font-size:22px;
+      line-height:1;
+      margin-right:10px;
+      text-align:center;
+    }
+
+    .texto-boton{
+      flex:1;
+      line-height:1.2;
+    }
+
+    .flecha{
+      margin-left:10px;
+      font-size:28px;
+      font-weight:400;
+      line-height:1;
+    }
+
+    .boton-deshabilitado{
+      opacity:.45;
+      cursor:not-allowed;
+    }
+
+    /* ==================================================
+       CARGANDO
+       ================================================== */
+
+    .cargando{
+      margin:20px 0;
+      padding:24px 18px;
+      border-radius:15px;
+      background:var(--ficha);
+      color:var(--gris);
+      text-align:center;
+      font-size:15px;
+      font-weight:700;
+    }
+
+    /* ==================================================
+       ERROR
+       ================================================== */
+
+    .error{
+      margin:20px 0;
+      padding:18px;
+      border-radius:15px;
+      background:#fff1f1;
+      border:1px solid #f3b8b8;
+      color:#a20d0d;
+      text-align:center;
+      font-size:14px;
+      font-weight:700;
+      line-height:1.5;
+    }
+
+    /* ==================================================
+       ESTADO
+       ================================================== */
+
+    .estado{
+      margin:16px 0;
+      text-align:center;
+      color:var(--gris);
+      font-size:12px;
+    }
+
+    /* ==================================================
+       PIE
+       ================================================== */
+
+    .pie{
+      margin-top:28px;
+      padding-top:17px;
+      border-top:1px solid var(--linea);
+      text-align:center;
+      color:#728498;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* ==================================================
+       MOBILE
+       ================================================== */
+
+    @media(max-width:480px){
+
+      .contenedor{
+        padding:22px 14px 32px;
+      }
+
+      h1{
+        font-size:27px;
+      }
+
+      .valor{
+        font-size:17px;
+      }
+
+      .boton{
+        font-size:14px;
+        min-height:56px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
 <body>
 
-<div class="wrap">
+  <main class="contenedor">
 
-  <div class="card">
+    <!-- =================================================
+         LOGO GEXSA
+         ================================================= -->
 
-    <!-- LOGO -->
-    <img
-      class="logo-img"
-      src="logo-gexsa.png"
-      alt="GEXSA SOLUTIONS"
-    >
+    <div class="logo">
+
+      <svg
+        class="logo-svg"
+        viewBox="0 0 420 120"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="GEXSA SOLUTIONS"
+        role="img"
+      >
+
+        <rect
+          x="0"
+          y="0"
+          width="420"
+          height="120"
+          fill="white"
+          opacity="0"
+        />
+
+        <text
+          x="210"
+          y="66"
+          text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="58"
+          font-weight="900"
+          fill="#0b4d7c"
+          letter-spacing="-3"
+        >
+          GEXSA
+        </text>
+
+        <text
+          x="210"
+          y="92"
+          text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="18"
+          font-weight="700"
+          fill="#0b4d7c"
+          letter-spacing="7"
+        >
+          SOLUTIONS
+        </text>
+
+      </svg>
+
+    </div>
+
+
+    <!-- =================================================
+         ENCABEZADO
+         ================================================= -->
 
     <div class="badge">
       FICHA DIGITAL DEL EXTINTOR
     </div>
 
-    <!-- CONTENIDO DINÁMICO -->
+
+    <!-- =================================================
+         CONTENIDO DINÁMICO
+         ================================================= -->
+
     <div id="contenido">
 
-      <div class="loading">
+      <div class="cargando">
         Cargando información del extintor...
       </div>
 
     </div>
 
-    <div class="footer">
+
+    <!-- =================================================
+         PIE
+         ================================================= -->
+
+    <div class="pie">
+
       GEXSA SOLUTIONS E.I.R.L.<br>
+
       Sistema Digital de Control de Extintores
+
     </div>
 
-  </div>
-
-</div>
+  </main>
 
 
-<script>
+  <script>
 
-/* =====================================================
-   CONFIGURACIÓN
-   ===================================================== */
+    /* ==================================================
+       CONFIGURACIÓN
+       ================================================== */
 
-const API_URL =
-  'https://script.google.com/macros/s/AKfycbw0lR7PwZtTFdRnBaM8VCy1sPGpW0bKEpP4DNZwsmi86YiKYFboPHx8UT-kf2rkKvQ3kQ/exec';
-
-
-const TARJETA_URL =
-  'https://docs.google.com/spreadsheets/d/1jTt8KdQhbbv6nwXtk2mJDI6du_Sq2sWVYlScaTcIJ7M/edit?gid=66323689#gid=66323689';
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycbw0lR7PwZtTFdRnBaM8VCy1sPGpW0bKEpP4DNZwsmi86YiKYFboPHx8UT-kf2rkKvQ3kQ/exec';
 
 
-/* =====================================================
-   OBTENER SERIE DEL QR
-   ===================================================== */
-
-const parametros =
-  new URLSearchParams(
-    window.location.search
-  );
-
-const serieQR =
-  parametros.get('serie');
+    const TARJETA_URL =
+      'https://docs.google.com/spreadsheets/d/1jTt8KdQhbbv6nwXtk2mJDI6du_Sq2sWVYlScaTcIJ7M/edit?gid=66323689#gid=66323689';
 
 
-/* =====================================================
-   REFERENCIA AL CONTENEDOR
-   ===================================================== */
+    /* ==================================================
+       OBTENER PARÁMETROS DEL QR
+       ================================================== */
 
-const contenido =
-  document.getElementById(
-    'contenido'
-  );
-
-
-/* =====================================================
-   FORMATEAR SERIE
-   ===================================================== */
-
-function formatearSerie(valor){
-
-  if(!valor){
-    return '';
-  }
-
-  const texto =
-    String(valor).trim();
-
-  /*
-     Si es solamente numérico
-     y tiene menos de 6 dígitos,
-     completar con ceros.
-  */
-
-  if(
-    /^\d+$/.test(texto) &&
-    texto.length < 6
-  ){
-
-    return texto.padStart(
-      6,
-      '0'
-    );
-
-  }
-
-  return texto;
-}
+    const parametros =
+      new URLSearchParams(
+        window.location.search
+      );
 
 
-/* =====================================================
-   ESCAPAR HTML
-   ===================================================== */
-
-function escaparHTML(valor){
-
-  if(
-    valor === null ||
-    valor === undefined
-  ){
-
-    return '';
-
-  }
-
-  return String(valor)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
-
-}
+    const serieQR =
+      parametros.get('serie');
 
 
-/* =====================================================
-   MOSTRAR ERROR
-   ===================================================== */
+    /* ==================================================
+       CONTENEDOR
+       ================================================== */
 
-function mostrarError(mensaje){
-
-  contenido.innerHTML = `
-    <div class="error">
-      ${escaparHTML(mensaje)}
-    </div>
-  `;
-
-}
+    const contenido =
+      document.getElementById(
+        'contenido'
+      );
 
 
-/* =====================================================
-   CARGAR FICHA
-   ===================================================== */
+    /* ==================================================
+       ESCAPAR HTML
+       ================================================== */
 
-function cargarFicha(){
+    function escaparHTML(valor){
 
-  if(!serieQR){
+      if(
+        valor === null ||
+        valor === undefined
+      ){
 
-    mostrarError(
-      'No se encontró la UBICACIÓN / SERIE del extintor en el código QR.'
-    );
+        return '';
 
-    return;
+      }
 
-  }
+      return String(valor)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
 
-
-  /*
-     JSONP
-
-     Se utiliza porque la página está en GitHub
-     y la API está en Google Apps Script.
-  */
-
-  const nombreCallback =
-    'gexsaCallback_' +
-    Date.now();
+    }
 
 
-  window[nombreCallback] =
-    function(respuesta){
+    /* ==================================================
+       FORMATEAR SERIE
+       ================================================== */
 
-      try{
+    function formatearSerie(valor){
 
-        procesarRespuesta(
-          respuesta
+      if(!valor){
+        return '';
+      }
+
+      const texto =
+        String(valor).trim();
+
+
+      /*
+        Solo completar con ceros cuando
+        sea únicamente numérico.
+      */
+
+      if(
+        /^\d+$/.test(texto) &&
+        texto.length < 6
+      ){
+
+        return texto.padStart(
+          6,
+          '0'
         );
 
-      }finally{
+      }
 
-        delete window[nombreCallback];
+      return texto;
 
-        const script =
-          document.getElementById(
-            nombreCallback
+    }
+
+
+    /* ==================================================
+       EXTRAER SOLO LA SERIE
+       ================================================== */
+
+    function obtenerSerieFinal(valor){
+
+      const texto =
+        String(
+          valor || ''
+        ).trim();
+
+
+      if(
+        texto.indexOf('/') !== -1
+      ){
+
+        const partes =
+          texto.split('/');
+
+
+        return String(
+          partes[
+            partes.length - 1
+          ] || ''
+        ).trim();
+
+      }
+
+
+      return texto;
+
+    }
+
+
+    /* ==================================================
+       MOSTRAR ERROR
+       ================================================== */
+
+    function mostrarError(mensaje){
+
+      contenido.innerHTML = `
+
+        <div class="error">
+          ${escaparHTML(mensaje)}
+        </div>
+
+      `;
+
+    }
+
+
+    /* ==================================================
+       CREAR BOTÓN
+       ================================================== */
+
+    function crearBoton(
+      texto,
+      url,
+      disponible
+    ){
+
+      if(
+        !disponible ||
+        !url
+      ){
+
+        return `
+
+          <div class="boton boton-deshabilitado">
+
+            <span class="icono">▣</span>
+
+            <span class="texto-boton">
+              ${escaparHTML(texto)}
+            </span>
+
+            <span class="flecha">
+              ›
+            </span>
+
+          </div>
+
+        `;
+
+      }
+
+
+      return `
+
+        <a
+          class="boton"
+          href="${escaparHTML(url)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="icono">
+            ▣
+          </span>
+
+          <span class="texto-boton">
+            ${escaparHTML(texto)}
+          </span>
+
+          <span class="flecha">
+            ›
+          </span>
+
+        </a>
+
+      `;
+
+    }
+
+
+    /* ==================================================
+       MOSTRAR FICHA
+       ================================================== */
+
+    function mostrarFicha(respuesta){
+
+      if(
+        !respuesta ||
+        respuesta.ok !== true ||
+        !respuesta.operatividad
+      ){
+
+        const mensaje =
+          respuesta &&
+          respuesta.error
+            ? respuesta.error
+            : 'No se encontró información para este extintor.';
+
+
+        mostrarError(
+          mensaje
+        );
+
+        return;
+
+      }
+
+
+      const op =
+        respuesta.operatividad;
+
+
+      const cph =
+        respuesta.hidrostatica;
+
+
+      /* ================================================
+         DATOS
+         ================================================ */
+
+      const numeroExtintor =
+        op.numeroExtintor || '';
+
+
+      const ubicacionSerie =
+        op.ubicacionSerie ||
+        serieQR ||
+        '';
+
+
+      const serie =
+        formatearSerie(
+          obtenerSerieFinal(
+            ubicacionSerie
+          )
+        );
+
+
+      const cliente =
+        op.cliente || '';
+
+
+      const tipo =
+        op.tipo || '';
+
+
+      const capacidad =
+        op.capacidad || '';
+
+
+      const agenteClase =
+        op.agenteClase || '';
+
+
+      const direccion =
+        op.direccion || '';
+
+
+      const fechaFabricacion =
+        op.fabricacion || '';
+
+
+      const fechaCarga =
+        op.fechaCarga || '';
+
+
+      const fechaVencimiento =
+        op.fechaVencimiento || '';
+
+
+      const ph =
+        op.ph || '';
+
+
+      const codigoCertificado =
+        op.codigoCertificado || '';
+
+
+      /* ================================================
+         BOTÓN OPERATIVIDAD
+         ================================================ */
+
+      const botonOperatividad =
+        crearBoton(
+          'Certificado de operatividad',
+          op.pdf || '',
+          !!op.pdf
+        );
+
+
+      /* ================================================
+         BOTÓN HIDROSTÁTICA
+         ================================================ */
+
+      let botonHidrostatica;
+
+
+      if(
+        cph &&
+        cph.pdf
+      ){
+
+        botonHidrostatica =
+          crearBoton(
+            'Certificado de prueba hidrostática',
+            cph.pdf,
+            true
           );
 
-        if(script){
+      }else{
+
+        botonHidrostatica =
+          crearBoton(
+            'Certificado de prueba hidrostática',
+            '',
+            false
+          );
+
+      }
+
+
+      /* ================================================
+         BOTÓN TARJETA
+         ================================================ */
+
+      const botonTarjeta =
+        crearBoton(
+          'Tarjeta de inspección',
+          TARJETA_URL,
+          true
+        );
+
+
+      /* ================================================
+         DATOS VISIBLES
+         ================================================ */
+
+      let html = '';
+
+
+      html += `
+
+        <h1>
+          Extintor N.º ${escaparHTML(
+            numeroExtintor
+          )}
+        </h1>
+
+      `;
+
+
+      html += `
+
+        <div class="serie">
+          N.º DE SERIE: ${escaparHTML(
+            serie
+          )}
+        </div>
+
+      `;
+
+
+      html += `
+
+        <div class="ficha">
+
+      `;
+
+
+      /* CLIENTE */
+
+      html += `
+
+        <div class="fila">
+
+          <div class="etiqueta">
+            Cliente
+          </div>
+
+          <div class="valor">
+            ${escaparHTML(cliente)}
+          </div>
+
+        </div>
+
+      `;
+
+
+      /* TIPO */
+
+      if(tipo){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Tipo de extintor
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(tipo)}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* CAPACIDAD */
+
+      html += `
+
+        <div class="fila">
+
+          <div class="etiqueta">
+            Capacidad
+          </div>
+
+          <div class="valor">
+            ${escaparHTML(capacidad)}
+          </div>
+
+        </div>
+
+      `;
+
+
+      /* AGENTE / CLASE */
+
+      if(agenteClase){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Agente / Clase
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(agenteClase)}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* UBICACIÓN / SERIE */
+
+      html += `
+
+        <div class="fila">
+
+          <div class="etiqueta">
+            Ubicación / Serie
+          </div>
+
+          <div class="valor">
+            ${escaparHTML(
+              ubicacionSerie
+            )}
+          </div>
+
+        </div>
+
+      `;
+
+
+      /* DIRECCIÓN */
+
+      if(direccion){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Dirección
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(direccion)}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* CÓDIGO */
+
+      if(codigoCertificado){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Código de certificado
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(
+                codigoCertificado
+              )}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* FECHA FABRICACIÓN */
+
+      if(fechaFabricacion){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Fecha de fabricación
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(
+                fechaFabricacion
+              )}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* FECHA CARGA */
+
+      if(fechaCarga){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Fecha de carga
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(
+                fechaCarga
+              )}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* FECHA VENCIMIENTO */
+
+      if(fechaVencimiento){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Fecha de vencimiento
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(
+                fechaVencimiento
+              )}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      /* PH */
+
+      if(ph){
+
+        html += `
+
+          <div class="fila">
+
+            <div class="etiqueta">
+              Próxima prueba hidrostática
+            </div>
+
+            <div class="valor">
+              ${escaparHTML(ph)}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      html += `
+
+        </div>
+
+      `;
+
+
+      /* ================================================
+         LOS 3 BOTONES
+         ORDEN EXACTO
+         ================================================ */
+
+      html += botonOperatividad;
+
+      html += botonHidrostatica;
+
+      html += botonTarjeta;
+
+
+      /* ================================================
+         ESTADO
+         ================================================ */
+
+      html += `
+
+        <div class="estado">
+
+          Ficha consultada automáticamente
+
+        </div>
+
+      `;
+
+
+      contenido.innerHTML =
+        html;
+
+    }
+
+
+    /* ==================================================
+       CARGAR API MEDIANTE JSONP
+       ================================================== */
+
+    function cargarFicha(){
+
+      if(!serieQR){
+
+        mostrarError(
+          'No se recibió la UBICACIÓN / SERIE en el código QR.'
+        );
+
+        return;
+
+      }
+
+
+      const nombreCallback =
+        'gexsaCallback_' +
+        Date.now();
+
+
+      window[nombreCallback] =
+        function(respuesta){
+
+          try{
+
+            mostrarFicha(
+              respuesta
+            );
+
+          }catch(error){
+
+            mostrarError(
+              'Ocurrió un error al cargar la ficha del extintor.'
+            );
+
+          }finally{
+
+            try{
+
+              delete window[
+                nombreCallback
+              ];
+
+            }catch(error){}
+
+
+            const script =
+              document.getElementById(
+                nombreCallback
+              );
+
+
+            if(script){
+
+              script.remove();
+
+            }
+
+          }
+
+        };
+
+
+      const script =
+        document.createElement(
+          'script'
+        );
+
+
+      script.id =
+        nombreCallback;
+
+
+      script.src =
+        API_URL +
+        '?serie=' +
+        encodeURIComponent(
+          serieQR
+        ) +
+        '&callback=' +
+        encodeURIComponent(
+          nombreCallback
+        );
+
+
+      script.onerror =
+        function(){
+
+          mostrarError(
+            'No se pudo conectar con el sistema digital de GEXSA SOLUTIONS.'
+          );
+
+
+          try{
+
+            delete window[
+              nombreCallback
+            ];
+
+          }catch(error){}
+
 
           script.remove();
 
-        }
-
-      }
-
-    };
+        };
 
 
-  const script =
-    document.createElement(
-      'script'
-    );
-
-
-  script.id =
-    nombreCallback;
-
-
-  script.src =
-    API_URL +
-    '?serie=' +
-    encodeURIComponent(
-      serieQR
-    ) +
-    '&callback=' +
-    encodeURIComponent(
-      nombreCallback
-    );
-
-
-  script.onerror =
-    function(){
-
-      mostrarError(
-        'No se pudo conectar con el sistema digital de GEXSA SOLUTIONS.'
+      document.body.appendChild(
+        script
       );
 
-      delete window[nombreCallback];
+    }
 
-      script.remove();
 
-    };
+    /* ==================================================
+       INICIAR
+       ================================================== */
 
+    cargarFicha();
 
-  document.body.appendChild(
-    script
-  );
-
-}
-
-
-/* =====================================================
-   PROCESAR RESPUESTA
-   ===================================================== */
-
-function procesarRespuesta(
-  respuesta
-){
-
-  if(
-    !respuesta ||
-    !respuesta.ok ||
-    !respuesta.operatividad
-  ){
-
-    const mensaje =
-      respuesta &&
-      respuesta.error
-        ? respuesta.error
-        : 'No se encontró información para este extintor.';
-
-    mostrarError(
-      mensaje
-    );
-
-    return;
-
-  }
-
-
-  const op =
-    respuesta.operatividad;
-
-
-  const cph =
-    respuesta.hidrostatica;
-
-
-  /* ===================================================
-     DATOS DEL EXTINTOR
-     =================================================== */
-
-  const numero =
-    op.numeroExtintor ||
-    '';
-
-
-  const serieCompleta =
-    formatearSerie(
-      op.ubicacionSerie ||
-      serieQR
-    );
-
-
-  const serieSolo =
-    formatearSerie(
-      obtenerSerieFinal(
-        op.ubicacionSerie ||
-        serieQR
-      )
-    );
-
-
-  const cliente =
-    op.cliente ||
-    '';
-
-
-  const capacidad =
-    op.capacidad ||
-    '';
-
-
-  const agente =
-    op.agenteClase ||
-    op.tipo ||
-    '';
-
-
-  const ubicacion =
-    op.ubicacionSerie ||
-    serieQR;
-
-
-  const fechaFabricacion =
-    op.fabricacion ||
-    '';
-
-
-  const fechaCarga =
-    op.fechaCarga ||
-    '';
-
-
-  const fechaVencimiento =
-    op.fechaVencimiento ||
-    '';
-
-
-  const ph =
-    op.ph ||
-    '';
-
-
-  const codigoCertificado =
-    op.codigoCertificado ||
-    '';
-
-
-  /* ===================================================
-     PDF OPERATIVIDAD
-     =================================================== */
-
-  let botonOperatividad = '';
-
-
-  if(op.pdf){
-
-    botonOperatividad = `
-      <a
-        class="btn"
-        href="${escaparHTML(op.pdf)}"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="icon">▣</span>
-        <span>Certificado de operatividad</span>
-        <span class="arrow">›</span>
-      </a>
-    `;
-
-  }else{
-
-    botonOperatividad = `
-      <div
-        class="btn disabled"
-        aria-label="Certificado de operatividad no disponible"
-      >
-        <span class="icon">▣</span>
-        <span>Certificado de operatividad</span>
-        <span class="arrow">›</span>
-      </div>
-    `;
-
-  }
-
-
-  /* ===================================================
-     PDF HIDROSTÁTICA
-     =================================================== */
-
-  let botonHidrostatica = '';
-
-
-  if(
-    cph &&
-    cph.pdf
-  ){
-
-    botonHidrostatica = `
-      <a
-        class="btn"
-        href="${escaparHTML(cph.pdf)}"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="icon">▣</span>
-        <span>Certificado de prueba hidrostática</span>
-        <span class="arrow">›</span>
-      </a>
-    `;
-
-  }else{
-
-    botonHidrostatica = `
-      <div
-        class="btn disabled"
-        aria-label="Certificado de prueba hidrostática no disponible"
-      >
-        <span class="icon">▣</span>
-        <span>Certificado de prueba hidrostática</span>
-        <span class="arrow">›</span>
-      </div>
-    `;
-
-  }
-
-
-  /* ===================================================
-     TARJETA
-     =================================================== */
-
-  const botonTarjeta = `
-    <a
-      class="btn"
-      href="${TARJETA_URL}"
-      target="_blank"
-      rel="noopener"
-    >
-      <span class="icon">▣</span>
-      <span>Tarjeta de inspección</span>
-      <span class="arrow">›</span>
-    </a>
-  `;
-
-
-  /* ===================================================
-     MOSTRAR INFORMACIÓN
-     =================================================== */
-
-  contenido.innerHTML = `
-
-    <h1>
-      Extintor N.º ${escaparHTML(numero)}
-    </h1>
-
-    <div class="subtitle">
-      N.º DE SERIE: ${escaparHTML(serieSolo)}
-    </div>
-
-
-    <div class="data">
-
-      <div class="row">
-        <div class="label">
-          Cliente
-        </div>
-        <div class="value">
-          ${escaparHTML(cliente)}
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="label">
-          Tipo de extintor
-        </div>
-        <div class="value">
-          ${escaparHTML(op.tipo || '')}
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="label">
-          Capacidad
-        </div>
-        <div class="value">
-          ${escaparHTML(capacidad)}
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="label">
-          Agente / Clase
-        </div>
-        <div class="value">
-          ${escaparHTML(agente)}
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="label">
-          Ubicación / Serie
-        </div>
-        <div class="value">
-          ${escaparHTML(ubicacion)}
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="label">
-          Dirección
-        </div>
-        <div class="value">
-          ${escaparHTML(op.direccion || '')}
-        </div>
-      </div>
-
-
-      ${
-        codigoCertificado
-        ? `
-          <div class="row">
-            <div class="label">
-              Código de certificado
-            </div>
-            <div class="value">
-              ${escaparHTML(codigoCertificado)}
-            </div>
-          </div>
-        `
-        : ''
-      }
-
-
-      ${
-        fechaFabricacion
-        ? `
-          <div class="row">
-            <div class="label">
-              Fecha de fabricación
-            </div>
-            <div class="value">
-              ${escaparHTML(fechaFabricacion)}
-            </div>
-          </div>
-        `
-        : ''
-      }
-
-
-      ${
-        fechaCarga
-        ? `
-          <div class="row">
-            <div class="label">
-              Fecha de carga
-            </div>
-            <div class="value">
-              ${escaparHTML(fechaCarga)}
-            </div>
-          </div>
-        `
-        : ''
-      }
-
-
-      ${
-        fechaVencimiento
-        ? `
-          <div class="row">
-            <div class="label">
-              Fecha de vencimiento
-            </div>
-            <div class="value">
-              ${escaparHTML(fechaVencimiento)}
-            </div>
-          </div>
-        `
-        : ''
-      }
-
-
-      ${
-        ph
-        ? `
-          <div class="row">
-            <div class="label">
-              Próxima prueba hidrostática
-            </div>
-            <div class="value">
-              ${escaparHTML(ph)}
-            </div>
-          </div>
-        `
-        : ''
-      }
-
-    </div>
-
-
-    ${botonOperatividad}
-
-    ${botonHidrostatica}
-
-    ${botonTarjeta}
-
-  `;
-
-}
-
-
-/* =====================================================
-   EXTRAER SERIE FINAL
-   ===================================================== */
-
-function obtenerSerieFinal(
-  valor
-){
-
-  const texto =
-    String(
-      valor || ''
-    ).trim();
-
-
-  if(
-    texto.includes('/')
-  ){
-
-    const partes =
-      texto.split('/');
-
-
-    return (
-      partes[
-        partes.length - 1
-      ] || ''
-    ).trim();
-
-  }
-
-
-  return texto;
-
-}
-
-
-/* =====================================================
-   INICIAR
-   ===================================================== */
-
-cargarFicha();
-
-</script>
+  </script>
 
 </body>
 </html>
