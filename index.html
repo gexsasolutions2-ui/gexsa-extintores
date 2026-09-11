@@ -281,11 +281,10 @@ h1{
    ===================================================== */
 
 const API_URL =
-'https://script.google.com/macros/s/AKfycby--5pQfTaQGyghXcA8j9kI4vD5xl62FY8wELpWdFTygaTKMPGOz7Dki8bfc76YtEg5sw/exec';
+'https://script.google.com/macros/s/AKfycbz6OC96rUbQfCBS2vXmTTiKEbqOK1xslpZEiVkfwZZHUS-hhxdeU5tyZO8ekZDZDBoWSA/exec';
 
 
-const TARJETA_BASE_URL =
-'https://script.google.com/macros/s/AKfycbxEatAlgJhB9zwwYlbHRabB2Wm0sskzKMC3EZApl7QU4TifIom8lfAaDATkFVvoZVy4Xg/exec';
+const TARJETA_BASE_URL = API_URL;
 
 
 /* =====================================================
@@ -453,7 +452,7 @@ function boton(
 
   return `
 
-    <a
+    
       class="boton"
       href="${esc(url)}"
       target="_blank"
